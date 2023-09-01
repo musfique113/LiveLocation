@@ -45,4 +45,4 @@ Replace **"YOUR_API_KEY_HERE"** with your actual Google Maps API key.
 
 ## DEMO
 
-https://github.com/musfique113/LiveLocation/blob/master/demo/demo.gif
+![Demo](https://github.com/musfique113/LiveLocation/raw/master/demo/demo.gif)
