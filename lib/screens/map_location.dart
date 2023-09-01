@@ -12,11 +12,9 @@ class LiveLocatinTrack extends StatefulWidget {
 
 class _LiveLocatinTrackState extends State<LiveLocatinTrack> {
   LocationData? myCurrentLocation;
-  late StreamSubscription _locationSuscription;
-
+   StreamSubscription? _locationSuscription;
 
   Future<void> getMyLocation() async {
-
     //request permission
     await Location.instance.requestPermission();
     myCurrentLocation = await Location.instance.getLocation();
@@ -27,7 +25,8 @@ class _LiveLocatinTrackState extends State<LiveLocatinTrack> {
   }
 
   void listenToMyLocation() {
-   _locationSuscription = Location.instance.onLocationChanged.listen((location) {
+    _locationSuscription =
+        Location.instance.onLocationChanged.listen((location) {
       if (location != myCurrentLocation) {
         myCurrentLocation = location;
         print('listning to my location $location');
@@ -36,6 +35,10 @@ class _LiveLocatinTrackState extends State<LiveLocatinTrack> {
         }
       }
     });
+  }
+
+  void stopToListenLocation() {
+    _locationSuscription?.cancel();
   }
 
   @override
@@ -54,6 +57,8 @@ class _LiveLocatinTrackState extends State<LiveLocatinTrack> {
               },
               child: Icon(Icons.location_on_outlined),
             ),
+
+
             SizedBox(
               width: 15,
             ),
@@ -62,6 +67,16 @@ class _LiveLocatinTrackState extends State<LiveLocatinTrack> {
                 listenToMyLocation();
               },
               child: Icon(Icons.pin_drop_rounded),
+            ),
+
+            const SizedBox(
+              width: 16,
+            ),
+            FloatingActionButton(
+              onPressed: () {
+                stopToListenLocation();
+              },
+              child: const Icon(Icons.stop_circle_outlined),
             ),
           ],
         ),

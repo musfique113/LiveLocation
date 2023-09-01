@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:location/location.dart';
 
-
 class MapScreen extends StatefulWidget {
   @override
   _MapScreenState createState() => _MapScreenState();
@@ -56,7 +55,7 @@ class _MapScreenState extends State<MapScreen> {
         infoWindowParam: InfoWindow(
           title: 'My current location',
           snippet:
-          'Latitude: ${locationData.latitude}, Longitude: ${locationData.longitude}',
+              'Latitude: ${locationData.latitude}, Longitude: ${locationData.longitude}',
         ),
       );
     });
@@ -64,14 +63,16 @@ class _MapScreenState extends State<MapScreen> {
 
   void _updatePolyline(LocationData locationData) {
     setState(() {
-      _polylineCoordinates.add(LatLng(locationData.latitude!, locationData.longitude!));
+      _polylineCoordinates
+          .add(LatLng(locationData.latitude!, locationData.longitude!));
       _polyline = _polyline.copyWith(pointsParam: _polylineCoordinates);
     });
   }
 
   void _animateToLocation(LocationData locationData) {
     _mapController?.animateCamera(
-      CameraUpdate.newLatLng(LatLng(locationData.latitude!, locationData.longitude!)),
+      CameraUpdate.newLatLng(
+          LatLng(locationData.latitude!, locationData.longitude!)),
     );
   }
 
@@ -90,8 +91,9 @@ class _MapScreenState extends State<MapScreen> {
         onMapCreated: _onMapCreated,
         markers: {_marker},
         polylines: {_polyline},
-        myLocationButtonEnabled: false,
+        myLocationButtonEnabled: true,
         myLocationEnabled: true,
+        compassEnabled: true,
       ),
     );
   }

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:livelocation/chat_map.dart';
-import 'package:livelocation/map.dart';
+import 'package:livelocation/screens/map.dart';
 
 void main() {
   runApp(const MyApp());
@@ -19,8 +19,8 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.green),
         useMaterial3: true,
       ),
-      home: GoogleMapScreen(),
-      //home: MapScreen(),
+      //home: GoogleMapScreen(),
+      home: MapScreen(),
       //home: HomeScreen(),
     );
   }
